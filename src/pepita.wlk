@@ -1,4 +1,5 @@
 import ciudades.*
+import comidas.*
 import wollok.game.*
 
 object pepita {
@@ -17,6 +18,21 @@ object pepita {
 			self.move(unaCiudad.position())
 			ciudad = unaCiudad
 		}
+	}
+
+	method irAComidaYComer(comida) {
+		self.move(comida.position())
+		self.comerComida(comida)
+	}
+	
+	method comerComida(comida) {
+		self.come(comida)
+		self.limpiarTerreno(comida)
+	}
+	
+	method limpiarTerreno(comida) {
+//		if(hay visual (comida)) { game.removeVisual(comida) }
+//		else { "No hay mas (comida)" :( }
 	}
 
 	method energiaParaVolar(distancia) = 15 + 5 * distancia

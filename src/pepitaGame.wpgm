@@ -12,14 +12,16 @@ program PepitaGame {
 	game.ground("suelo.png")
 
 //	VISUALES
-	game.addVisualIn(alpiste, game.at(5,5))
-	game.addVisualIn(manzana, game.at(5,1))
+	game.addVisual(alpiste)
+	game.addVisual(manzana)
 	game.addVisual(buenosAires)
 	game.addVisual(villaGesell)
 	game.addVisual(pepita)
 
 //	TECLADO
 	keyboard.h().onPressDo { game.say(pepita, "Hola chiques!") }
+	keyboard.m().onPressDo { pepita.irAComidaYComer(manzana) }
+	keyboard.a().onPressDo { pepita.irAComidaYComer(alpiste) }
 
 	keyboard.v().onPressDo { pepita.volaHacia(villaGesell) }
 	keyboard.b().onPressDo { pepita.volaHacia(buenosAires) }
