@@ -21,9 +21,14 @@ object pepita {
 		if (ciudad == unaCiudad && self.position() == unaCiudad.position()) {
 			game.say(self, "Ya estoy en" + unaCiudad)
 		} else {
+			self.volarSiPuede(unaCiudad)
+		}
+	}
+	
+	method volarSiPuede(unaCiudad) {
+		if(self.energia() > self.energiaParaVolar(position.distance(unaCiudad.position())))
 			self.move(unaCiudad.position())
 			ciudad = unaCiudad
-		}
 	}
 	
 	method irAComidaYComer(comida) {
