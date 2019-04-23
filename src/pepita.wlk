@@ -3,7 +3,7 @@ import comidas.*
 import wollok.game.*
 
 object pepita {
-
+	
 	var property energia = 100
 	var property ciudad = buenosAires
 	var property position = game.at(3, 3)
@@ -67,23 +67,31 @@ object pepita {
 		if (amiga != ave) game.say(self, "Hola" + ave + "!")
 		amiga = ave
 	}
+	
+	method colision(cosa) {
+		cosa.darleDeComerA(self)
+	}
 
 }
 
 object pepona {
-
+	
 	method image() = "pepona.png"
-
 	method position() = game.at(2, 8)
-
+	
+	method colision(cosa) {
+		cosa.darleDeComerA(self)
+	}
 }
 
 object pipa {
 
 	method image() = "pepitaCanchera.png"
-
 	method position() = game.at(4, 8)
-
+	
+	method colision(cosa) {
+		cosa.darleDeComerA(self)
+	}
 }
 
 object roque {
@@ -110,11 +118,12 @@ object roque {
 			self.agregarComidaGuardada()
 		}
 	}
-
+	
 	method darleDeComerA(golondrina) {
 		if (comidaGuardada != null) {
 			golondrina.come(comidaGuardada)
 			self.agregarComidaGuardada()
+			self.comidaGuardada(null)
 		}
 	}
 

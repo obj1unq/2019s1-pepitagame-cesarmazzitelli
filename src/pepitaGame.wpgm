@@ -17,13 +17,14 @@ program PepitaGame {
 	game.addVisual(buenosAires)
 	game.addVisual(villaGesell)
 	game.addVisual(pepita)
-	game.addVisual(pepona)
+//	game.addVisual(pepona)
+//	game.addVisual(pipa)
+	game.addVisual(roque)
 	
 // COLISIONES
-	game.whenCollideDo(pepona, {golondrina => golondrina.nuevaAmiga(pepona)})
-	game.whenCollideDo(pipa, {golondrina => golondrina.nuevaAmiga(pipa)})
-	game.whenCollideDo(roque, {comida => roque.guardarComida(comida)})
-	game.whenCollideDo(roque, {golondrina => roque.darleDeComerA(golondrina)})
+//	game.whenCollideDo(pepona, {golondrina => golondrina.nuevaAmiga(pepona)})
+//	game.whenCollideDo(pipa, {golondrina => golondrina.nuevaAmiga(pipa)})
+	game.whenCollideDo(roque, {cosa => cosa.colision(roque)})
 
 //	TECLADO
 	keyboard.h().onPressDo { game.say(pepita, "Hola chiques!") }
