@@ -1,6 +1,8 @@
 import wollok.game.*
 
 object manzana {
+	var property esComida = true
+	
 	method image() = "manzana.png"
 	method position() = game.at(5,1)
 	
@@ -8,6 +10,8 @@ object manzana {
 }
 
 object alpiste {
+	var property esComida = true
+	
 	method image() = "alpiste.png"
 	method position() = game.at(5,5)
 	
