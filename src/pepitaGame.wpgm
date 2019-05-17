@@ -33,7 +33,7 @@ program PepitaGame {
 //	game.whenCollideDo(alpisteBis, {cosa => cosa.chocasteConComida(alpisteBis)})
 	game.whenCollideDo(pepita, {cosa => cosa.chocasteConPajaro()})
 	game.whenCollideDo(roque, {cosa => cosa.chocasteConPajaro()})
-
+	
 //	TECLADO
 	keyboard.h().onPressDo { game.say(pepita, "Hola chiques!") }
 //	keyboard.m().onPressDo { pepita.irAComidaYComer(manzana) }

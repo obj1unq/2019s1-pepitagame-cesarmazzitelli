@@ -78,16 +78,12 @@ object pepita {
 /*
 object pepona {
 	method image() = "pepona.png"
-
 	method position() = game.at(2, 8)
-
 }
 
 object pipa {
 	method image() = "pepitaCanchera.png"
-
 	method position() = game.at(4, 8)
-
 }
 */
 object roque {
@@ -115,11 +111,12 @@ object roque {
 			self.agregarComidaGuardada()
 		}
 	}
-
+	
 	method darleDeComerA(golondrina) {
 		if (comidaGuardada != null) {
 			golondrina.come(comidaGuardada)
 			self.agregarComidaGuardada()
+			self.comidaGuardada(null)
 		}
 	}
 
