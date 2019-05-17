@@ -3,12 +3,10 @@ import comidas.*
 import wollok.game.*
 
 object pepita {
-	var property esComida = false
 	var property energia = 100
 	var property ciudad = buenosAires
 	var property position = game.at(3, 3)
-	var amiga
-
+	
 	method image() {
 		return if (self.energia() > 100) {
 			"pepita-gorda-raw.png"
@@ -30,15 +28,16 @@ object pepita {
 	}
 
 	method volarSiPuede(unaCiudad) {
-		if (self.energia() > self.energiaParaVolar(position.distance(unaCiudad.position()))) self.move(unaCiudad.position())
-		ciudad = unaCiudad
+		if (self.energia() > self.energiaParaVolar(position.distance(unaCiudad.position()))) { self.move(unaCiudad.position())
+		ciudad = unaCiudad }
+		else { game.say(self, "Dame de comer") }
 	}
-
+/*
 	method irAComidaYComer(comida) {
 		self.move(comida.position())
 		self.comerComida(comida)
 	}
-
+*/
 	method comerComida(comida) {
 		self.come(comida)
 		self.limpiarTerreno(comida)
@@ -63,16 +62,21 @@ object pepita {
 		}
 	}
 
-	method nuevaAmiga(ave) {
+	/*method nuevaAmiga(ave) {
 		if (amiga != ave) game.say(self, "Hola" + ave + "!")
 		amiga = ave
-	}
-
-}
-
-object pepona {
-	var property esComida = false
+	}*/
 	
+	method chocasteConComida(comida) {
+		self.comerComida(comida)
+	}
+	
+	method chocasteConPajaro() {
+		game.say(self, "Hola Roque!")
+	}
+}
+/*
+object pepona {
 	method image() = "pepona.png"
 
 	method position() = game.at(2, 8)
@@ -80,27 +84,20 @@ object pepona {
 }
 
 object pipa {
-	var property esComida = false 
-	
 	method image() = "pepitaCanchera.png"
 
 	method position() = game.at(4, 8)
 
 }
-
+*/
 object roque {
-	var property esComida = false
 	var property position = game.at(3, 5)
-	var property comidaGuardada = null
+	var granitosRecogidos = 0
+//	var property comidaGuardada = null
 
 	method image() = "pepita1.png"
 
-	method esComida(comida) {
-		if (comida.esComida()) {
-			self.guardarComida(comida)
-		}
-	}
-	
+/*	
 	method guardarComida(comida) {
 		if(comidaGuardada != comida) {
 			self.tirarComidaGuardada()
@@ -129,5 +126,29 @@ object roque {
 	method agregarComidaGuardada() {
 		game.addVisualIn(comidaGuardada, game.at(1.randomUpTo(10).truncate(0), 1.randomUpTo(10).truncate(0)))
 	}
+*/
+	method chocasteConComida(comida) {	}
+	
+	method dejarAlpiste() {
+		const alpiste = new Alpiste()
+	//	self.darGranos()
+		game.addVisualIn(alpiste, self.position())
+		game.whenCollideDo(alpiste, {cosa => cosa.chocasteConComida(alpiste)})
+	}
+	
+//	method darGranos()
+	
+	method dejarManzana() {
+		const manzana = new Manzana()
+		manzana.position(self.position())
+		game.addVisualIn(manzana, self.position())
+		game.whenCollideDo(manzana, {cosa => cosa.chocasteConComida(manzana)})
+	}
+	
+	method chocasteConPajaro() {
+		game.say(self, "Hola Pepita!")
+	}
+	
+	method recogerGranos() { granitosRecogidos += 1 }
 }
 
